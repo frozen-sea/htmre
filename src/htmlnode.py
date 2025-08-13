@@ -13,8 +13,14 @@ class HTMLNode():
         return "".join(f" {k}=\"{v}\"" for (k, v) in props.items())
 
     def __repr__(self):
-        children = self.children or []
-        return f"HTMLNode({self.tag}, {self.value}, {"".join(children)}, {self.props_to_html()})"
+        children = "".join(self.children or [])
+        props = self.props_to_html().strip()
+        inner = f"{self.tag}, \"{self.value}\""
+        if children:
+            inner = inner + ", " + children
+        if props:
+            inner = inner + ", " + props
+        return f"HTMLNode({inner})"
 
 class LeafNode(HTMLNode):
     def __init__(self, tag, value, props=None):

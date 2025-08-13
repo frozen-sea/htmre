@@ -19,7 +19,10 @@ class TextNode:
         return self.text == other.text and self.text_type == other.text_type and self.url == other.url
 
     def __repr__(self):
-        return f"TextNode({self.text}, {self.text_type.value}, {self.url})"
+        inner = f"\"{self.text}\", {self.text_type}" 
+        if self.url:
+            inner = inner + ", " + self.url
+        return f"TextNode({inner})"
 
 def text_node_to_html_node(text_node):
     match text_node.text_type:
