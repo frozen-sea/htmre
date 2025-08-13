@@ -1,4 +1,6 @@
-from textnode import TextType
+import re
+
+from textnode import TextType, TextNode
 from htmlnode import LeafNode
 
 def text_node_to_html_node(text_node):
